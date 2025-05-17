@@ -1,257 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Misa-AI: Your Personal Shopper</title>
-  <link href="https://fonts.googleapis.com/css2?family=Grobek:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Grobek', sans-serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      background: linear-gradient(135deg, #f393af, #f292ae, #f494b0, #f488a8, #f38eac);
-      color: white;
-      transition: background 0.5s, color 0.5s;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Misa-AI: Your Personal Shopper</title>
+    <link href="https://fonts.googleapis.com/css2?family=Grobek:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink1: #f393af;
+            --pink2: #f292ae;
+            --pink3: #f494b0;
+            --pink4: #f488a8;
+            --pink5: #f38eac;
+            --white: #fff;
+            --dark: #222;
+        }
 
-    nav {
-      background: rgba(255, 255, 255, 0.1);
-      display: flex;
-      justify-content: space-between;
-      padding: 20px 40px;
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(12px);
-    }
+        body {
+            font-family: 'Grobek', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--pink1), var(--pink2), var(--pink3), var(--pink4), var(--pink5));
+            color: var(--white);
+            transition: background 0.3s ease;
+        }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-    }
+        header {
+            padding: 60px 20px 40px;
+            text-align: center;
+            font-size: 36px;
+            text-shadow: 1px 2px 10px var(--pink4);
+        }
 
-    header {
-      padding: 100px 20px 60px;
-      font-size: 40px;
-      font-weight: bold;
-      text-shadow: 2px 2px 20px #f488a8;
-    }
+        nav {
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 15px;
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
 
-    .intro, .features, .testimonials, .screenshots {
-      padding: 60px 20px;
-    }
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
 
-    .feature-box, .testimonial-box, .screenshot-box {
-      display: inline-block;
-      width: 25%;
-      padding: 20px;
-      margin: 15px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(244, 148, 176, 0.3);
-    }
+        nav a:hover {
+            color: var(--pink1);
+        }
 
-    h2 {
-      font-size: 30px;
-      margin-bottom: 30px;
-    }
+        .section {
+            padding: 50px 20px;
+            text-align: center;
+        }
 
-    .feature-box h3, .testimonial-box h4 {
-      font-size: 22px;
-      color: #fff;
-    }
+        .feature-box, .testimonial-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 15px auto;
+            width: 80%;
+            max-width: 600px;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 10px 20px rgba(244, 148, 176, 0.3);
+        }
 
-    .feature-box p, .testimonial-box p {
-      font-size: 16px;
-    }
+        .button {
+            background-color: var(--pink4);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            border: none;
+            font-size: 18px;
+            margin-top: 20px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(244, 148, 176, 0.4);
+        }
 
-    .screenshot-box img {
-      width: 100%;
-      border-radius: 12px;
-    }
+        .screenshots img {
+            width: 90%;
+            max-width: 600px;
+            border-radius: 20px;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
 
-    footer {
-      padding: 30px;
-      background: #f38eac;
-      font-size: 14px;
-    }
+        .toggle-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: var(--white);
+            color: var(--pink3);
+            border: none;
+            padding: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            z-index: 999;
+        }
 
-    button {
-      background-color: #f488a8;
-      border: none;
-      color: white;
-      padding: 15px 40px;
-      border-radius: 50px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 5px 20px rgba(244, 148, 176, 0.4);
-      transition: transform 0.2s;
-    }
-
-    button:hover {
-      background-color: #f494b0;
-      transform: scale(1.05);
-    }
-
-    .dark-mode {
-      background: #1a1a1a;
-      color: #fff;
-    }
-
-    /* ✅ New styles for fancy testimonials & screenshots */
-    .testimonials {
-      padding: 60px 20px;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(5px);
-      border-top: 2px solid #f38eac;
-      border-bottom: 2px solid #f38eac;
-    }
-
-    .testimonials h2 {
-      font-size: 32px;
-      color: #fff;
-      margin-bottom: 30px;
-      text-shadow: 0 0 10px #f488a8;
-    }
-
-    .testimonial-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      margin-bottom: 40px;
-    }
-
-    .testimonial {
-      width: 300px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 20px;
-      color: #fff;
-      box-shadow: 0 10px 30px rgba(244, 148, 176, 0.3);
-      font-style: italic;
-    }
-
-    .testimonial h4 {
-      margin-top: 15px;
-      font-style: normal;
-      font-weight: 700;
-      color: #f38eac;
-    }
-
-    .screenshots {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .screenshots img {
-      width: 300px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(244, 136, 168, 0.3);
-    }
-  </style>
-  <script>
-    function toggleTheme() {
-      document.body.classList.toggle('dark-mode');
-    }
-  </script>
+        .dark-mode {
+            background: #1a1a1a;
+            color: var(--white);
+        }
+    </style>
 </head>
 <body>
-
-  <nav>
-    <div><strong>Misa-AI</strong></div>
-    <div>
-      <a href="#intro">About</a>
-      <a href="#features">Features</a>
-      <a href="#screenshots">Screenshots</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#footer">Contact</a>
-    </div>
-    <button onclick="toggleTheme()">Toggle Theme</button>
-  </nav>
-
-  <header>
-    <h1>Misa-AI</h1>
-    <p>Your Personal Shopper</p>
-    <button onclick="alert('Coming Soon!')">Get Started</button>
-  </header>
-
-  <section id="intro" class="intro">
-    <h2>What is Misa-AI?</h2>
-    <p>Misa-AI is your AI-powered shopping assistant designed to find, order, and deliver your favorite products with a simple command.</p>
-  </section>
-
-  <section id="features" class="features">
-    <h2>Why Choose Misa-AI?</h2>
-    <div class="feature-box">
-      <h3>Smart Automation</h3>
-      <p>Just say "Order it" and let Misa-AI handle the rest.</p>
-    </div>
-    <div class="feature-box">
-      <h3>Voice Commands</h3>
-      <p>Activate voice mode and shop hands-free.</p>
-    </div>
-    <div class="feature-box">
-      <h3>Secure Checkout</h3>
-      <p>No card details stored. Pure shopping bliss.</p>
-    </div>
-  </section>
-
-  <section id="screenshots" class="screenshots">
-    <h2>App Previews</h2>
-    <div class="screenshot-box">
-      <img src="https://via.placeholder.com/300x200" alt="screenshot 1">
-    </div>
-    <div class="screenshot-box">
-      <img src="https://via.placeholder.com/300x200" alt="screenshot 2">
-    </div>
-  </section>
-
-  <section id="testimonials" class="testimonials">
-    <h2>What People Say</h2>
-    <div class="testimonial-box">
-      <h4>Jiya M.</h4>
-      <p>“Literally the glam assistant I always needed!”</p>
-    </div>
-    <div class="testimonial-box">
-      <h4>Arya R.</h4>
-      <p>“Makes shopping effortless and aesthetic ✨”</p>
-    </div>
-
-    <!-- ✅ Extra Fancy Testimonials -->
-    <h2>Loved By Glam Shoppers 💖</h2>
-    <div class="testimonial-container">
-      <div class="testimonial">
-        <p>"Misa-AI got me the perfect outfit in seconds! I'm obsessed 😍"</p>
-        <h4>— Aria, Fashion Blogger</h4>
-      </div>
-      <div class="testimonial">
-        <p>"I just said *'get it'* and boom — order placed. Game changer!"</p>
-        <h4>— Zara, Student & Sneakerhead</h4>
-      </div>
-      <div class="testimonial">
-        <p>"It’s like having a glam bestie who knows your vibe 24/7 💅"</p>
-        <h4>— Kiara, Beauty Creator</h4>
-      </div>
-    </div>
-
-    <div class="screenshots">
-      <img src="https://via.placeholder.com/300x200?text=App+Screenshot+1" alt="Screenshot 1" />
-      <img src="https://via.placeholder.com/300x200?text=App+Screenshot+2" alt="Screenshot 2" />
-      <img src="https://via.placeholder.com/300x200?text=App+Screenshot+3" alt="Screenshot 3" />
-    </div>
-  </section>
-
-  <footer id="footer">
-    <p>&copy; 2025 Misa-AI | Too Glam To Give A Damn</p>
-    <p>Deployed with ❤️ on <a href="https://vercel.com/" target="_blank" style="color:white; text-decoration:underline">Vercel</a></p>
-  </footer>
+    <button class="toggle-btn" onclick="toggleDarkMode()">🌗</button>
+    <nav>
+        <a href="#features">Features</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#testimonials">Testimonials</a>
+    </nav>
+    <header>
+        <h1>Misa-AI</h1>
+        <p>Your Personal Shopper</p>
+        <button class="button">Get Started</button>
+    </header>
+    <section id="features" class="section">
+        <h2>Why Choose Misa-AI?</h2>
+        <div class="feature-box">
+            <h3>Smart Automation</h3>
+            <p>Just say "Order it" and let Misa-AI handle the rest.</p>
+        </div>
+        <div class="feature-box">
+            <h3>Voice Commands</h3>
+            <p>Activate voice mode and shop hands-free.</p>
+        </div>
+        <div class="feature-box">
+            <h3>Secure Checkout</h3>
+            <p>No card details stored. Pure shopping bliss.</p>
+        </div>
+    </section>
+    <section id="screenshots" class="section screenshots">
+        <h2>See Misa-AI In Action</h2>
+        <img src="https://via.placeholder.com/600x400.png?text=Misa+AI+Screenshot" alt="App screenshot">
+    </section>
+    <section id="testimonials" class="section">
+        <h2>What They’re Saying</h2>
+        <div class="testimonial-box">
+            <p><em>“I never thought shopping could be this seamless. Misa-AI is a dream!”</em></p>
+            <p>- Sofia R., Fashion Blogger</p>
+        </div>
+        <div class="testimonial-box">
+            <p><em>“So cute. So smart. So useful. 10/10.”</em></p>
+            <p>- Nyla M., College Student</p>
+        </div>
+    </section>
+    <footer class="section">
+        <p>&copy; 2025 Misa-AI | Built with love & pink 💗</p>
+    </footer>
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
 </body>
 </html>
