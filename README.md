@@ -1,12 +1,9 @@
 # misa-ai-landing
-# 💖 Misa-AI: Your Personal Shopper
+Misa-AI is a sleek, AI-powered shopping assistant designed with a modern, feminine aesthetic. Developed using HTML and CSS, it features the elegant Grobek font and is fully responsive across devices. Now live and accessible via Vercel.
 
-A modern AI-powered shopping assistant with a glam pink aesthetic.  
-Built using HTML, CSS (Grobek font), and a responsive layout. Live on Vercel!
-
-## 🌟 Features
-- Gradient glam theme inspired by Barbiecore
-- Mobile responsive
-- Interactive CTA
-- Glassmorphism effect
-- Deployed with custom domain (optional)
+✯ Key Features
+-Stylish gradient theme inspired by Barbiecore trends.
+-Fully mobile-responsive interface for seamless browsing.
+-Engaging, interactive call-to-action elements.
+-Sophisticated glassmorphism design for a modern UI experience.
+-Optional deployment on a custom domain for branding flexibility.
