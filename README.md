@@ -12,3 +12,10 @@ Misa-AI is a sleek, AI-powered shopping assistant designed with a modern, femini
 -Sophisticated glassmorphism design for a modern UI experience.
 
 -Optional deployment on a custom domain for branding flexibility.
+
+## 🚀 Featured Project: Misa-AI
+
+AI-powered shopping assistant that helps users make personalized fashion choices.
+
+🔗 [Live Site](https://misa-ai.vercel.app)  
+💻 [Source Code](https://github.com/manasvi-misa/misa-ai-landing)
