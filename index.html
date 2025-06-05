@@ -253,5 +253,54 @@
     <p>&copy; 2025 Misa-AI | Too Glam To Give A Damn</p>
     <p>Deployed with ❤️ on <a href="https://vercel.com/" target="_blank" style="color:white; text-decoration:underline">Vercel</a></p>
   </footer>
+  <!-- AI Assistant UI -->
+<div id="chatbot" style="position: fixed; bottom: 100px; right: 20px; width: 300px; background: white; color: black; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: none; flex-direction: column; overflow: hidden; z-index: 999;">
+  <div style="background: #f494b0; color: white; padding: 10px; font-weight: bold;">Misa-AI Assistant</div>
+  <div id="chat-window" style="flex: 1; padding: 10px; height: 250px; overflow-y: auto; font-size: 14px;"></div>
+  <input id="chat-input" type="text" placeholder="Ask me anything..." style="border: none; border-top: 1px solid #ccc; padding: 10px; width: 100%; box-sizing: border-box;">
+</div>
+
+<!-- Chat Toggle Button -->
+<button onclick="toggleChatbot()" style="position: fixed; bottom: 30px; right: 20px; background: #f494b0; color: white; border: none; border-radius: 50px; width: 60px; height: 60px; font-size: 28px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 999;">💬</button>
+
+<script>
+  function toggleChatbot() {
+    const bot = document.getElementById('chatbot');
+    bot.style.display = bot.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  const input = document.getElementById('chat-input');
+  const chatWindow = document.getElementById('chat-window');
+
+  input.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && input.value.trim() !== '') {
+      const userText = input.value.trim();
+      appendMessage('You', userText);
+      input.value = '';
+
+      // Fake AI response for now
+      setTimeout(() => {
+        const reply = getAIResponse(userText);
+        appendMessage('Misa-AI', reply);
+      }, 600);
+    }
+  });
+
+  function appendMessage(sender, text) {
+    const msg = document.createElement('div');
+    msg.innerHTML = `<strong>${sender}:</strong> ${text}`;
+    chatWindow.appendChild(msg);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+
+  function getAIResponse(text) {
+    // Dumb logic, replace with real API later
+    if (text.toLowerCase().includes('dress'))
+      return 'I’d recommend the floral wrap dress trending this summer! 🌸';
+    if (text.toLowerCase().includes('shoes'))
+      return 'Comfy sneakers or heels? We’ve got great options for both!';
+    return 'Let me look into that for you!';
+  }
+</script>
 </body>
 </html>
