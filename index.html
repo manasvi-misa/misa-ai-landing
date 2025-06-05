@@ -264,6 +264,8 @@
 <button onclick="toggleChatbot()" style="position: fixed; bottom: 30px; right: 20px; background: #f494b0; color: white; border: none; border-radius: 50px; width: 60px; height: 60px; font-size: 28px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 999;">💬</button>
 
 <script>
+  let lastIntent = "";
+
   function toggleChatbot() {
     const bot = document.getElementById('chatbot');
     bot.style.display = bot.style.display === 'flex' ? 'none' : 'flex';
@@ -278,11 +280,10 @@
       appendMessage('You', userText);
       input.value = '';
 
-      // Fake AI response for now
       setTimeout(() => {
         const reply = getAIResponse(userText);
         appendMessage('Misa-AI', reply);
-      }, 600);
+      }, 500);
     }
   });
 
@@ -293,13 +294,40 @@
     chatWindow.scrollTop = chatWindow.scrollHeight;
   }
 
-  function getAIResponse(text) {
-    // Dumb logic, replace with real API later
-    if (text.toLowerCase().includes('dress'))
-      return 'I’d recommend the floral wrap dress trending this summer! 🌸';
-    if (text.toLowerCase().includes('shoes'))
-      return 'Comfy sneakers or heels? We’ve got great options for both!';
-    return 'Let me look into that for you!';
+  function getAIResponse(input) {
+    const text = input.toLowerCase();
+
+    // Greetings
+    if (["hi", "hello", "hey"].some(greet => text.includes(greet))) {
+      return "Hey there! 👋 I'm Misa, your personal shopping assistant. What are you looking for today?";
+    }
+
+    // Dress intent
+    if (text.includes("dress")) {
+      lastIntent = "dress";
+      return "Sure! What kind of dress are you interested in — casual, party, or formal?";
+    }
+
+    // Respond to dress subtypes
+    if (lastIntent === "dress" && ["casual", "party", "formal"].some(type => text.includes(type))) {
+      lastIntent = "";
+      return `Great choice! I’ll show you some ${text} dresses that are trending now. 🛍️`;
+    }
+
+    // Shoes intent
+    if (text.includes("shoes")) {
+      lastIntent = "shoes";
+      return "Got it! Are you looking for sneakers, heels, or flats?";
+    }
+
+    // Shoe subtypes
+    if (lastIntent === "shoes" && ["sneakers", "heels", "flats"].some(type => text.includes(type))) {
+      lastIntent = "";
+      return `Awesome! These ${text} are customer favorites. Want me to show you some? 👟👠`;
+    }
+
+    // Fallback
+    return "Hmm, I didn’t catch that. Can you tell me more about what you're looking for?";
   }
 </script>
 </body>
